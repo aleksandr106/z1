@@ -1,3 +1,4 @@
+#Упражнение №5
 output=open('output.txt','w')
 put=open('put.txt','w')
 from random import *
