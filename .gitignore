@@ -1,0 +1,10 @@
+output=open('output.txt','w')
+put=open('put.txt','w')
+from random import *
+for i in range(1000000):
+    n=random()*10000//1/100
+    m=randint(0,100)
+    print(n,file=output)
+    print(m,file=put)
+put.close()
+output.close()                 
