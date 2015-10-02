@@ -1,0 +1,14 @@
+b=int(input())
+c=(list(map(int, input().split())))
+n=int(input())
+i=0
+max=0
+while i <b-n+1:
+    sum=0
+    for v in range(n):
+        sum+=c[i+v]
+    if sum>max:
+        max=sum
+    i+=1
+print(max)
+    
