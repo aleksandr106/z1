@@ -1,0 +1,25 @@
+put=open('put.txt','r')
+a=[]
+b=[0]*101
+l=0
+c=0
+for line in put:
+    a.append(line)
+for i in range(1000000):
+    a[i]=int(a[i])
+    b[a[i]]+=1
+print(' '.join(map(str, b)))
+j=max(b)
+h=min(b)
+for i in range(101):
+    if b[i]==j and l==0:
+        print(i)
+        l+=1
+    if b[i]==h and c==0:
+        print(i)
+        c+=1
+    if c==1 and l==1:
+        break
+for i in range(101):
+    if b[i]==0:
+        print(i)
