@@ -1,0 +1,10 @@
+k=int(input())
+n=int(input())
+a=[]
+for i in range(k):
+    a.append(int(1))
+m=0
+for i in range(n-k+1):
+    a.append(int(sum(a)-m))
+    m+=a[i]
+print(a[-1])
