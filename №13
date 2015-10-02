@@ -1,0 +1,9 @@
+a =list(map(int, input().split()))
+sum=0
+c=0
+a.append(0)
+for i in range(9):
+    if  a[i]!=2 or a[i+1]==2:
+        sum+=a[i]
+        c+=1
+print(int((sum+a[9])/(c+1)//1))
