@@ -1,0 +1,15 @@
+b=int(input())
+a=[]
+c=[]
+for i in range(b):
+    c=(list(map(int, input().split())))
+    a.extend(c)
+    c=[]
+n=int(input())
+i=0
+c=0
+while i <len(a):
+    if n>=a[i] and n<=a[i+1]:
+        c+=1
+    i+=2
+print(c)
