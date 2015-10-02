@@ -1,0 +1,13 @@
+put=open('output.txt','r')
+a=[]
+b=[0]*20
+for line in put:
+    a.append(line)
+for i in range(1000000):
+    a[i]=float(a[i])
+for j in range (1000000):
+    c=int(a[j]*100)//100//5
+    b[c]+=1
+import matplotlib.pyplot as plt
+plt.hist(a,20)
+plt.show()
