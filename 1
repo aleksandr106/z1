@@ -1,0 +1,30 @@
+import unittest
+import lib
+class libtest(unittest.TestCase):
+    def test_even(self):
+        self.assertEqual(lib.even(4),True)
+        self.assertEqual(lib.even(5),False)
+        self.assertEqual(lib.even(-2),True)
+        self.assertEqual(lib.even(0),True)
+        self.assertEqual(lib.even(-11),False)
+    def test_factorial(self):
+        self.assertEqual(lib.factorial(5),120)
+        self.assertEqual(lib.factorial(0),1)
+        self.assertEqual(lib.factorial(-1),1)
+    def test_palindrome(self):
+        self.assertEqual(lib.palindrome('qwwq'),True)
+        self.assertEqual(lib.palindrome('qwe'),False)
+        self.assertEqual(lib.palindrome('q w q'),True)
+    def test_prime(self):
+        self.assertEqual(lib.prime(5),True)
+        self.assertEqual(lib.prime(1),False)
+        self.assertEqual(lib.prime(15),False)
+    def test_sin(self):
+        self.assertEqual(lib.sin(0),0)
+        self.assertEqual(lib.sin(3.14*3),0)
+        self.assertEqual(lib.sin(3.14/6),0.5)
+    def test_sqrt(self):
+        self.assertEqual(lib.sqrt(25),5)
+        self.assertEqual(lib.sqrt(0),0)
+        self.assertEqual(lib.sqrt(-1),0)
+unittest.main(verbosity=2)
