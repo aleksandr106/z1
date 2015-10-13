@@ -1,0 +1,17 @@
+import numpy as np
+from matplotlib import mlab
+import pylab
+import math
+x=np.arange(np.pi,0.01)
+tmin = -20.0
+tmax = 20.0
+dt = 0.01
+tlist=mlab.frange(tmin, tmax, dt)
+pylab.ion()
+for a in range (100):
+        xlist=[math.sin(t*3+a/10.0) for t in tlist]
+        ylist = [math.cos(t*2) for t in tlist ]
+        pylab.clf()
+        pylab.plot (xlist, ylist)
+        pylab.draw()
+pylab.close()
