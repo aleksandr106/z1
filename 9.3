@@ -1,0 +1,14 @@
+from decimal import Decimal as dc
+s=int(input())
+x=int(input())
+y=int(input())
+xm=x/1200
+a=dc(s*(1+xm)**(y*12)*xm)/dc((1+xm)**(12*y)-1)
+b=a*12*y-s
+print(a,b)
+s2=s
+print('Процент', 'Основной долг')
+for i in range(12*y):
+    s1=s2*xm
+    print(s*xm,s1)
+    s2,s1=s
