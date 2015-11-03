@@ -1,0 +1,36 @@
+input=open('en-ru.txt','r')
+c=input.read(1)
+l=''
+a={}
+en=''
+rus=''
+while len(c)>0:
+    if c=='\t'and en=='':
+        en=l
+        en=en.replace('\n','')
+    if c=='\n':
+        rus=l
+        rus=rus.replace(en+'\t'+'-'+'\t','')
+        rus=rus.replace('\n','')
+    if en!='' and rus!='':
+        a[en]=rus
+        en=''
+        rus=''
+        l=''
+    l+=c
+    c=input.read(1)
+i=open('input.txt','r')
+c=i.read(1)
+l=''
+while len(c)>0:
+    if ord(c)==46 or ord(c)==44 or ord(c)==63 or ord(c)==33:
+        c=' '
+    l+=c
+    c=i.read(1)
+l=l.lower()
+b=l.split()
+for i in range(len(b)):
+    if b[i] in a:
+        print(a[b[i]],end=' ')
+    else:
+        print(b[i], end=' ')
