@@ -1,0 +1,23 @@
+input=open('input.txt','r')
+c=input.read(1)
+l=''
+while len(c)>0:
+    if ord(c)==46 or ord(c)==44 or ord(c)==63 or ord(c)==33:
+        c=' '
+    l+=c
+    c=input.read(1)
+l=l.lower()
+a=l.split()
+b={}
+for i in range(len(a)):
+    if a[i] in b:
+        b[a[i]]+=1
+    else:
+        b[a[i]]=1
+s=0
+m=''
+for key in b:
+    if b[key]>s:
+        m=key
+        s=b[key]
+print(m)
