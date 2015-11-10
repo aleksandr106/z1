@@ -1,0 +1,50 @@
+class Point:
+    def __init__(self,s):
+        s=s.split(',')
+        self.x=float(s[0])
+        self.y=float(s[1])
+    def __str__(self):
+        return (str(self.x)+' '+str(self.y))
+    def __add__(self,other):
+        return Point(str(self.x+other.x)+','+str(self.y+other.y))
+    def __sub__(self,other):
+       return Point(str(self.x+other.x)+','+str(self.y+other.y))
+    def __lt__(self, other):
+        return self.x < other.x or self.x == other.x and self.y < other.y
+    def __len__(self,other):
+        return float(((self.x-other.x)**2+(self.y-other.y)**2)**0.5)
+    def __mul__(self,a):
+        return Point(str(self.x*a)+','+str(self.y*a))
+
+
+
+n=int(input())
+o=Point('0,0')
+b=o
+c=o
+p=0
+a=[b]*n
+m=0.0
+for i in range (n):
+    s=input()
+    a[i]=Point(s)
+    if (a[i].__len__(o)) > m:
+        m=a[i].__len__(o)
+        b=a[i]
+    c+=a[i]
+c=c*(1/n)
+print(str(b))
+print(str(c))
+pm=0.0
+sm=0.0
+for i in range(n):
+    for j in range(i+1,n):
+        for e in range(j+1,n):
+            p=a[i].__len__(a[j])+a[i].__len__(a[e])+a[e].__len__(a[j])
+            s=(p/2*(p/2-a[i].__len__(a[j]))*(p/2-a[i].__len__(a[e]))*(p/2-a[e].__len__(a[j])))**0.5
+            if p>pm:
+                pm=p
+            if s>sm:
+                sm=s
+print(pm,sm)
+
