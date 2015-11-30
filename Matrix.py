@@ -1,12 +1,12 @@
 class Matrix():
     a=[]
     def __init__(self, m, n=None):
-        try:
-            if n ==None:
+            if type(m)==list and n ==None:
                 self.a=m
-            else:
+            elif type(m)==int and type(n)==int and m>0 and n>0:
                 self.a=[[0]*n for i in range(m)]
-        except ValueError as e:
+            else:
+                raise ValueError()
             print('')
 
 
@@ -18,14 +18,14 @@ class Matrix():
     def get_n(self):
         return len(self.a[0])
     def get_size(self):
-        return (self.get_m,self.get_n)
+        return (len(self.a),len(self.a[0]))
     def set(self,i,j,v):
         self.a[i][j]=v
         return self
     def __eq__(self, other):
         k=True
         if len(self.a)!=len(other.a) and len(self.a[0])!=len(other.a[0]):
-            k=False
+            raise RuntimeError
         else:
              for i in range(len(self.a)):
                 for j in range(len (self.a[0])):
@@ -52,12 +52,42 @@ class Matrix():
         return(b)
     def __mul__(self, other):
         b=Matrix(len(self.a),len (self.a[0]))
-        if type(other)==Matrix:
+        if type(other)==Matrix and len(self.a[0])==len(other.a):
+            b=Matrix(len(self.a),len (other.a[0]))
             for i in range(len(self.a)):
-                 for j in range(len (self.a[0])):
-                    b.a[i][j]=self.a[i][j]*other.a[i][j]
-        else:
+                 for j in range(len(other.a[0])):
+                    for k in range (len(other.a)):
+                        b.a[i][j]+=other.a[k][j]*self.a[i][k]
+
+        elif type(other)==int or type(other)==float:
             for i in range(len(self.a)):
                  for j in range(len (self.a[0])):
                     b.a[i][j]=self.a[i][j]*other
+        else:
+            raise RuntimeError
         return b
+    def __truediv__(self, other):
+        b=Matrix(len(self.a),len (self.a[0]))
+        for i in range(len(self.a)):
+            for j in range(len (self.a[0])):
+                 b.a[i][j]=self.a[i][j]/other
+        return b
+    def determinant(self):
+        b=0
+        if len(self.a)==len(self.a[0]):
+            if len(self.a)==2:
+                b=self.a[0][0]*self.a[1][1]-self.a[1][0]*self.a[0][1]
+            if len(self.a)==3:
+                  b=self.a[0][0]*self.a[1][1]*self.a[2][2]+self.a[0][1]*self.a[1][2]*self.a[2][0]+self.a[0][2]*self.a[1][0]*self.a[2][1]
+                  b+=-self.a[0][2]*self.a[1][1]*self.a[2][0]-self.a[2][1]*self.a[1][2]*self.a[0][0]-self.a[2][2]*self.a[1][0]*self.a[0][1]
+        else:
+            raise RuntimeError
+        return b
+    def __invert__(self):
+        if len(self.a)==len(self.a[0]):
+            b=Matrix(len(self.a),len (self.a[0]))
+            if len(self.a)==2:
+                b.a[0][0]=-1/self.determinant()*self.a[1][1]
+                b.a[1][0]=1/self.determinant()*self.a[0][1]
+                b.a[0][1]=1/self.determinant()*self.a[1][0]
+                b.a[1][1]=-1/self.determinant()*self.a[0][0]
