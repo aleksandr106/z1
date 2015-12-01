@@ -1,4 +1,4 @@
-__author__ = 'student'
+___author__ = 'student'
 def f(i):
     a=4
     b=4.25
@@ -8,6 +8,7 @@ def f(i):
     print(a)
 f(30)
 from fractions import Fraction as fr
+from decimal import Decimal as  dc
 def q(i):
     a=fr(4,1)
     b=fr(425,100)
@@ -17,6 +18,15 @@ def q(i):
     a=a.limit_denominator()
     print(a)
 q(30)
+def f(i):
+    a=dc(4)
+    b=dc(4.25)
+    for j in range(i):
+        c=dc(108)-(dc(815)-dc(1500)/a)/b
+        a,b=b,c
+    print(c)
+f(30)
+
 import numpy as np
 import matplotlib.pyplot as plt
 x=np.arange(3,6.01,0.1)
