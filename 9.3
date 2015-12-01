@@ -1,14 +1,40 @@
+import numpy as np
+from decimal import getcontext
+getcontext().prec=5
 from decimal import Decimal as dc
-s=int(input())
-x=int(input())
-y=int(input())
-xm=x/1200
-a=dc(s*(1+xm)**(y*12)*xm)/dc((1+xm)**(12*y)-1)
-b=a*12*y-s
-print(a,b)
+import matplotlib.pyplot as plt
+s=dc(input())
+x=dc(input())
+y=dc(input())
+xm=dc(x/1200)
+h=s*(((dc(1)+xm)**(dc(12)))*(xm))/((dc(1)+xm)**(dc(12)*y)-dc(1))
+print(h)
+b=0
 s2=s
-print('Процент', 'Основной долг')
-for i in range(12*y):
-    s1=s2*xm
-    print(s*xm,s1)
-    s2,s1=s
+a=[[0]*4 for i in range(int(y)*12)]
+for i in range(12*int(y)):
+     a[i][0]=dc(dc((1)+xm)*(s2))
+     if a[i][0]<h:
+          a[i][1]=(a[i][0])
+     else:
+         a[i][1]=h
+     b+=a[i][1]
+     a[i][2]=((xm)*(s2))
+     a[i][3]=((-xm)*(s2)+h)
+     s2=a[i][0]-h
+     print(a[i][0],a[i][1],a[i][2],a[i][3])
+print(b)
+c=[0]*(12*int(y))
+k=[0]*(12*int(y))
+v=[0]*(12*int(y))
+for i in range(int(y)*12):
+    c[i]=a[i][0]
+    k[i]=a[i][2]
+    v[i]=a[i][3]
+t = np.arange(0., int(y)*12., 1)
+plt.subplot(221)
+plt.plot(t,c,'ro')
+plt.subplot(224)
+plt.plot(t,k,'ro',t,v,'ro')
+
+plt.show()
