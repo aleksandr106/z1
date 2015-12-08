@@ -1,9 +1,27 @@
-def set(self,i,j,v):
+class Matrix():
+    a=[]
+    def __init__(self, m, n=None):
+            if type(n) == int and type(m)==int and m>0 and n>0 :
+                self.a=[[0]*n for i in range(m)]
+            elif type(m)==list and n==None :
+                self.a=m
+            else:
+                raise ValueError
+            print('')
+    def get(self,i,j):
+        return self.a[i][j]
+    def get_m(self):
+        return len(self.a)
+    def get_n(self):
+        return len(self.a[0])
+    def get_size(self):
+        return (len(self.a),len(self.a[0]))
+    def set(self,i,j,v):
         self.a[i][j]=v
         return self
     def __eq__(self, other):
         k=True
-        if len(self.a)!=len(other.a) and len(self.a[0])!=len(other.a[0]):
+        if len(self.a)!=len(other.a) or len(self.a[0])!=len(other.a[0]):
             raise RuntimeError
         else:
              for i in range(len(self.a)):
