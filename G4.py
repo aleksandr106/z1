@@ -9,6 +9,7 @@ def dekstra(g,start):
             if osp<sp[i]:
                 sp[i]=osp
                 q.append(i)
+    return sp
 n=int(input())
 m=int(input())
 k=int(input())
