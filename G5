@@ -1,0 +1,25 @@
+from copy import deepcopy
+def floyd(weight):
+    n=len(weight)
+    F=deepcopy(weight)
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                F[i][j]=min(F[i][j],F[i][k]+F[k][j])
+    return F
+n=int(input())
+m=int(input())
+g=[[float('+inf')]*n for i in range(n)]
+for i in range(n):
+    g[i][i]=0
+for i in range(m):
+    s=input().split()
+    a=int(s[0])
+    b=int(s[1])
+    w=float(s[2])
+    g[a][b]=w
+    g[a][b]=w
+f=floyd(g)
+for i in range(len(f)):
+    for j in range(i+1,len(f[i])):
+        print(i, j, f[i][j])
