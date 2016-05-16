@@ -8,6 +8,11 @@ def call(g,start,called):
                 if i not in called:
                    called.add(i)
                    q.append(i)
+def cal1(g,start,called1):
+    called1.add(start)
+    for i in g(start):
+        if i not in called1:
+            call(g,i,called1)
 n=int(input())
 m=int(input())
 g={}
@@ -23,7 +28,9 @@ for i in range(m):
     else:
         g[b].add(a)
 called=set()
+called1=set()
 call(g,1,called)
+call(g,1,called1)
 if len(called)==n:
     print('Связный граф')
     print('Компенента связности', called)
