@@ -1,0 +1,29 @@
+#include <cmath>
+#include <iostream>
+
+void bad_incrementor(int x)
+{
+    x++;
+    std::cout << x<<std::endl;
+}
+void good_incrementor(int *x)
+{
+    (* x)++;
+    std::cout << (*x)<<std::endl;
+}
+void good_incremetor(int &x)
+{
+    x++;
+    std::cout << (x)<<std::endl;
+}
+int main()
+{
+    int c=3;
+    bad_incrementor(c);
+    std::cout<<c<<std::endl;
+    good_incrementor(&c);
+    std::cout <<c<<std::endl;
+    good_incremetor(c);
+    std::cout <<c<<std::endl;
+    return 0;
+}
